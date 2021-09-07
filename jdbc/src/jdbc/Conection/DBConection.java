@@ -3,6 +3,7 @@ package jdbc.Conection;
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class DBConection {
@@ -20,7 +21,7 @@ public class DBConection {
         }
         
     }
-    public Connection getConnection(){
+    private Connection getConnection(){
         Connection con = null;
         try {
             con = (Connection) DriverManager.getConnection(URL,USER,PASS);
@@ -30,4 +31,11 @@ public class DBConection {
         }
         return con;
     }
+    
+    public Statement stmtt() throws SQLException{
+        Connection con = getConnection();
+        if (con!=null) return con.createStatement();
+        else return null;
+    }
+    
 }
